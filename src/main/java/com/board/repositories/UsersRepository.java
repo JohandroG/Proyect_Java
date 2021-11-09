@@ -38,4 +38,11 @@ public interface UsersRepository extends CrudRepository <User,Long> {
 	@Query(value = "INSERT INTO users(fullname,username,password) " +
 	"VALUES(?1, ?2, ?3)", nativeQuery=true)
 	void insertNewUser( String name,String username, String encryptedpassword);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE users SET fullname = ?2, username = ?3, password = ?4 WHERE user_id = ?1", nativeQuery=true)
+	void updateUser(Long id, String name,String username, String encryptedpassword);
+	
+	
 }

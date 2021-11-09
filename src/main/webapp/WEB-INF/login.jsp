@@ -28,13 +28,13 @@
                 <div class="left">
 
                     <label for="username">Usuario:</label>
-                    <input type="text" name="username"/>
+                    <input type="text" name="username" placeholder="Usuario"/>
                     <p class="flashmjs">
                         <c:out value="${lerrorMessage2}"></c:out>
                     </p>
     
                     <label for="password">Contraseña:</label>
-                    <input type="text" name="password"/>
+                    <input type="text" name="password" placeholder="Contraseña"/>
                     <p class="flashmjs">
                         <c:out value="${lerrorMessage3}"></c:out>
                     </p>

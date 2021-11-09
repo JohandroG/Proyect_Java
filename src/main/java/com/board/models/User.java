@@ -65,6 +65,7 @@ public class User {
 		this.codes = codes;
 	}
 	
+	
 	public User(String fullname,
 			String username, String password,
 			List<Notice> notices, List<Code> codes) {

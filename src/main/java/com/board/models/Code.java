@@ -45,6 +45,11 @@ public class Code {
 		this.users = users;
 	}
 	
+	public Code(Long code_id, String hcode) {
+		this.code_id = code_id;
+		this.hcode = hcode;
+	}
+	
 	public Code(String hcode, List<User> users) {
 		this.hcode = hcode;
 		this.users = users;

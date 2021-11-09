@@ -21,7 +21,7 @@
     | 
     <a href="/iniciar/sesion">Iniciar Sesion</a>
     |
-    <a href="/hostcode">Cambiar codigo host</a>
+    <a href="/cambiar/codigo">Cambiar codigo host</a>
     |
     <a href="/editar/admin">editar admin</a>
 </nav>
@@ -44,7 +44,7 @@
                         <a href="${info.getLink()}">Link</a>
                     </c:if>
 
-                    <c:out value = "${info.getImportance()}" ></c:out>
+                    
                     <c:out value = "${info.getTitle()}" ></c:out>
                     <c:out value = "${info.getDescription()}" ></c:out>
                     <c:if test="${userInfo != null}"  >

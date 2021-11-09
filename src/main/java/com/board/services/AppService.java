@@ -61,6 +61,11 @@ public Boolean validateUser (User currentUser, String password){
 	return BCrypt.checkpw( password, currentUser.getPassword() );
 }
 
+public void updateAdmin(Long id, String name,String username, String password) {
+	String encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+	ur.updateUser(id, name, username, encryptedPassword);
+}
+
 
 //-----------------------------------------------Notice--------------------------------------
 
@@ -86,6 +91,9 @@ public List<Code> seeMatch( String code ){
 	return cr.matchcode(code);
 }
 
+public void updateCode(Code code) {
+	cr.save(code);
+}
 
 //-----------------------------------------------Association--------------------------------------
 

@@ -31,7 +31,8 @@ public NoticesController(AppService as) {
 }
 
 //----------------------------------------LOAD SITE----------------------------------------------------
-
+ 
+//================================================
 @RequestMapping(value="/publicar", method=RequestMethod.GET)
 public String Register(HttpSession session) {
 	
@@ -47,7 +48,7 @@ public String Register(HttpSession session) {
     return "publish.jsp";
 }
 
-
+//================================================
 @RequestMapping(value="/editar/{id}", method=RequestMethod.GET)
 public String update(@PathVariable("id") Long id,HttpSession session, Model model) {
 	
@@ -155,7 +156,9 @@ public String edit(@RequestParam("topic") String topic,
 		@RequestParam("newImage2") MultipartFile multipartFile2,
 		@RequestParam("link") String link,
 		@RequestParam("notice_id") Long notice_id,
-		@RequestParam(value = "important", defaultValue = "off") String important , 
+		@RequestParam(value = "important", defaultValue = "off") String important ,
+		@RequestParam("img1") String img1,
+		@RequestParam("img2") String img2,
 		HttpSession session, RedirectAttributes redirectAttributes
 		) throws IOException {
 
@@ -183,6 +186,7 @@ public String edit(@RequestParam("topic") String topic,
 		Long user_id =  (Long) session.getAttribute("user_id");
 		List<User> current = as.findUsersUsingID(user_id);
 		User currentU = as.findUsingID(user_id);
+		
 
 		
 		String fileName1 = "1" + currentU.getUser_id() + StringUtils.cleanPath(multipartFile1.getOriginalFilename());
@@ -190,14 +194,43 @@ public String edit(@RequestParam("topic") String topic,
 		
 		
 		if (fileName2.equals("2" + currentU.getUser_id()) && fileName1.equals("1" + currentU.getUser_id())) {
+			
+			
+			if (!img1.isEmpty()) {
+	    		String img1name = img1.substring(8,img1.length());
+	    		File img1File = new File (new File("src/main/resources/static/images").getAbsoluteFile() + "/" + img1name );
+	    		img1File.delete();
+	    		}
+			
+			if (!img2.isEmpty()) {
+	    		String img2name = img2.substring(8,img2.length());
+	    		File img2File =  new File  (new File("src/main/resources/static/images").getAbsoluteFile() + "/" + img2name );
+	    		img2File.delete();
+	    		}
+			
+			
 			Notice newnotice = new Notice(notice_id,topic,desc,link,important,current);
 			as.publishNotice(newnotice);
+			
 			return "redirect:/editar/" + notice_id;
 		}
 		
 		
 	    if (!fileName2.equals("2" + currentU.getUser_id()) && !fileName1.equals("1" + currentU.getUser_id())) {
-		Notice newnotice = new Notice(notice_id,topic,desc,"/images/" + fileName1,"/images/" + fileName2,link,important,current);
+		
+	    	if (!img1.isEmpty()) {
+	    		String img1name = img1.substring(8,img1.length());
+	    		File img1File = new File (new File("src/main/resources/static/images").getAbsoluteFile() + "/" + img1name );
+	    		img1File.delete();
+	    		}
+			
+			if (!img2.isEmpty()) {
+	    		String img2name = img2.substring(8,img2.length());
+	    		File img2File =  new File  (new File("src/main/resources/static/images").getAbsoluteFile() + "/" + img2name );
+	    		img2File.delete();
+	    		}	
+	    	
+	    Notice newnotice = new Notice(notice_id,topic,desc,"/images/" + fileName1,"/images/" + fileName2,link,important,current);
 		as.publishNotice(newnotice);
 		String fileLocation = new File("src/main/resources/static/images").getAbsolutePath();
 		FileUploadUtil.saveFile(fileLocation, fileName1, multipartFile1);
@@ -206,16 +239,31 @@ public String edit(@RequestParam("topic") String topic,
 	    }
 		
 	    if (!fileName1.equals("1" + currentU.getUser_id())) {
+	    	
+	    	if (!img1.isEmpty()) {
+	    		String img1name = img1.substring(8,img1.length());
+	    		File img1File = new File (new File("src/main/resources/static/images").getAbsoluteFile() + "/" + img1name );
+	    		img1File.delete();
+	    		}
+			
+			if (!img2.isEmpty()) {
+	    		String img2name = img2.substring(8,img2.length());
+	    		File img2File =  new File  (new File("src/main/resources/static/images").getAbsoluteFile() + "/" + img2name );
+	    		img2File.delete();
+	    		}
+
 	    	Notice newnotice = new Notice(notice_id,topic,desc,"/images/" + fileName1, link,important,current);
 	    	as.publishNotice(newnotice);
 	    	String fileLocation = new File("src/main/resources/static/images").getAbsolutePath();
 	        FileUploadUtil.saveFile(fileLocation, fileName1, multipartFile1);
+
 	        return "redirect:/editar/" + notice_id;
 	    }
 	    
 	    if (!fileName2.equals("2" + currentU.getUser_id()) && fileName1.equals("1" + currentU.getUser_id())) {
 			redirectAttributes.addFlashAttribute("errorMessage1", "🧧 Error: Utiliza el primer espacio para subir una sola imagen");
 	    }
+
 	    
 		}
 	    
@@ -223,10 +271,30 @@ public String edit(@RequestParam("topic") String topic,
 		
 	}
 
-	
-	@RequestMapping( value = "/delete/{id}", method = RequestMethod.GET )
-	public String delete(@PathVariable("id") Long id) {
-		as.deleteNotice(id);
+//================================================	
+	@RequestMapping( value = "/delete", method = RequestMethod.POST )
+	public String delete(@RequestParam("notice_id") Long notice_id,
+			@RequestParam("img2") String img2,
+			@RequestParam("img1") String img1
+			){
+		
+		if (!img1.isEmpty()) {
+		String img1name = img1.substring(8,img1.length());
+		File img1File = new File (new File("src/main/resources/static/images").getAbsoluteFile() + "/" + img1name );
+		img1File.delete();
+		}
+
+		if (!img2.isEmpty()) {
+		String img2name = img2.substring(8,img2.length());
+		File img2File =  new File  (new File("src/main/resources/static/images").getAbsoluteFile() + "/" + img2name );
+		img2File.delete();
+		}
+		
+		
+		as.deleteNotice(notice_id);
+		//--------------
+		
+		
 		return "redirect:/";
 	}
 

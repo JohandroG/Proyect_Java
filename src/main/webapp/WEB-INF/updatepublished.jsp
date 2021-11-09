@@ -48,7 +48,7 @@
                 </p>
 
                 <label>Imagen Extra</label>
-                <input type="file" value="${noticeInfo.getImg2()}" id="newImage2" name="newImage2" accept="image/png, image/jpeg"/>
+                <input type="file" id="newImage2" name="newImage2" accept="image/png, image/jpeg"/>
                 </div>
 
                 <div class="link">
@@ -61,10 +61,19 @@
                 <label for="important">Importante</label>
             </div>
 
+            <input type="hidden" value="${noticeInfo.getImg2()}" name="img2"/>
+            <input type="hidden" value="${noticeInfo.getImg()}" name="img1"/>
             <input type="hidden" value="${noticeInfo.getNotice_id()}" name="notice_id"/>
             <button type="submit">Publicar</button>
         </form>
-        <a href="/delete/${noticeInfo.getNotice_id()}">Eliminar</a>
+
+        <form method="POST" action="/delete">
+            <input type="hidden" value="${noticeInfo.getNotice_id()}" name="notice_id"/>
+            <input type="hidden" value="${noticeInfo.getImg2()}" name="img2"/>
+            <input type="hidden" value="${noticeInfo.getImg()}" name="img1"/>
+            <button type="submit">Eliminar</button>
+        </form>
+        
     </main>
 
 </body>

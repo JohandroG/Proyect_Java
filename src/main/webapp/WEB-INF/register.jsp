@@ -29,13 +29,13 @@
             <div class="left">
                 
                 <label for="name">Nombre Completo:</label>
-                <input type="text" name="name"/>
+                <input type="text" name="name" placeholder="Nombre"/>
                 <p class="flashmjs">
                     <c:out value="${rerrorMessage3}"></c:out>
                 </p>
 
                 <label for="username">Usuario:</label>
-                <input type="text" name="username"/>
+                <input type="text" name="username" placeholder="Usuario"/>
                 <p class="flashmjs">
                     <c:out value="${rerrorMessage1}"></c:out>
                 </p>
@@ -44,19 +44,19 @@
                 </p>
 
                 <label for="password">Contraseña:</label>
-                <input type="text" name="password"/>
+                <input type="text" name="password" placeholder="Contraseña"/>
                 <p class="flashmjs">
                     <c:out value="${rerrorMessage5}"></c:out>
                 </p>
 
                 <label for="confpassword">Confirmar Contraseña:</label>
-                <input type="text" name="confpassword"/>
+                <input type="text" name="confpassword" placeholder="Confirma Contraseña"/>
                 <p class="flashmjs">
                     <c:out value="${rerrorMessage6}"></c:out>
                 </p>
 
                 <label for="code">Codigo de Administrador:</label>
-                <input type="text" name="code"/>
+                <input type="text" name="code" placeholder="Codigo"/>
                 <p class="flashmjs">
                     <c:out value="${rerrorMessage7}"></c:out>
                 </p>

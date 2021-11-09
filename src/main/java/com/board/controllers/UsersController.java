@@ -35,12 +35,27 @@ public UsersController(AppService as) {
         return "register.jsp";
     }
 
-	//========================================Load login
+//========================================Load login
 	@RequestMapping(value="/iniciar/sesion", method=RequestMethod.GET)
     public String Login() {
         return "login.jsp";
     }
-	
+
+//==================================Load Update	
+	@RequestMapping(value="/editar/admin", method=RequestMethod.GET)
+	public String Code(HttpSession session, Model model) {
+		
+		Long user_id =  (Long) session.getAttribute("user_id");
+		User current = as.findUsingID(user_id);
+
+		if(current == null) {
+			return "redirect:/";
+		}
+		
+		model.addAttribute("adminInfo", current );
+		
+	    return "updateadmin.jsp";
+	}
 
 	
 //-------------------------------------POST AND FORMS-----------------------------------------------
@@ -58,26 +73,28 @@ public UsersController(AppService as) {
 	
     	List<User> match = as.getlistofUsersByusername(username);
     	boolean isValid = true;
+    	boolean isValid2 = true;
     	List<Code> matchCode = as.seeMatch(code);
     	
 //<Validations>
+    	if (name.isEmpty() || username.isEmpty() || password.isEmpty()) {
+    		redirectAttributes.addFlashAttribute("rerrorMessage2", "📃 Uno de los campos está incompleto");
+    		isValid = false;
+    		isValid2 = false;
+    	}
     	if( match.size() > 0 ) {
     		redirectAttributes.addFlashAttribute("rerrorMessage1", "😥 Alguien mas ya tiene este usuario");
     		isValid = false;
     	}
-    	if (name.isEmpty() || username.isEmpty() || password.isEmpty()) {
-    		redirectAttributes.addFlashAttribute("rerrorMessage2", "📃 Uno de los campos está incompleto");
-    		isValid = false;
-    	}
-    	if (name.length() < 5) {
+    	if (name.length() < 5 && isValid2) {
     		redirectAttributes.addFlashAttribute("rerrorMessage3", "🧧 El nombre completo debe ser de al menos 5 caracteres");
     		isValid = false;
     	}
-    	if (username.length() < 5) {
+    	if (username.length() < 5 && isValid2) {
     		redirectAttributes.addFlashAttribute("rerrorMessage4", "🧧 El usuario debe ser de al menos 5 caracteres");
     		isValid = false;
     	}
-    	if (password.length() < 8 ) {
+    	if (password.length() < 8 && isValid2 ) {
     		redirectAttributes.addFlashAttribute("rerrorMessage5", "🧧 La contraseña debe ser de al menos 8 caracteres");
     		isValid = false;
     	}
@@ -85,7 +102,7 @@ public UsersController(AppService as) {
 	    	redirectAttributes.addFlashAttribute("rerrorMessage6","🔑 Las contraseñas no coinciden");
 	    	isValid = false;
 	    }
-	    if( matchCode.size() == 0 ) {
+	    if( matchCode.size() == 0 && isValid2) {
     		redirectAttributes.addFlashAttribute("rerrorMessage7", "🔎 El codigo no coincide con nuestros registros");
     		isValid = false;
     	}
@@ -149,7 +166,65 @@ public UsersController(AppService as) {
     }		
 	
 	
+	@RequestMapping(value="/update/admin", method=RequestMethod.POST)
+	public String updateAdmin(@RequestParam (value = "name") String name,
+    		@RequestParam (value = "username") String username,
+    		@RequestParam (value = "password") String password,
+    		@RequestParam (value = "confpassword") String conf,
+    		@RequestParam (value = "code") String code,
+    		@RequestParam (value = "user_id") Long user_id,
+    		HttpSession session,RedirectAttributes redirectAttributes) {
 	
+    	List<User> match = as.getlistofUsersByusername(username);
+    	boolean isValid = true;
+    	boolean isValid2 = true;
+    	List<Code> matchCode = as.seeMatch(code);
+    	
+		Long user_id2 =  (Long) session.getAttribute("user_id");
+		User current = as.findUsingID(user_id2);
+
+    	
+//<Validations>
+    	if (name.isEmpty() || username.isEmpty() || password.isEmpty()) {
+    		redirectAttributes.addFlashAttribute("rerrorMessage2", "📃 Uno de los campos está incompleto");
+    		isValid = false;
+    		isValid2 = false;
+    	}
+    	if( !current.getUsername().equals(username) && match.size() > 0) {
+    		redirectAttributes.addFlashAttribute("rerrorMessage1", "😥 Alguien mas ya tiene este usuario");
+    		isValid = false;
+    	}
+    	if (name.length() < 5 && isValid2) {
+    		redirectAttributes.addFlashAttribute("rerrorMessage3", "🧧 El nombre completo debe ser de al menos 5 caracteres");
+    		isValid = false;
+    	}
+    	if (username.length() < 5 && isValid2) {
+    		redirectAttributes.addFlashAttribute("rerrorMessage4", "🧧 El usuario debe ser de al menos 5 caracteres");
+    		isValid = false;
+    	}
+    	if (password.length() < 8 && isValid2) {
+    		redirectAttributes.addFlashAttribute("rerrorMessage5", "🧧 La contraseña debe ser de al menos 8 caracteres");
+    		isValid = false;
+    	}
+	    if (!password.equals( conf )) {
+	    	redirectAttributes.addFlashAttribute("rerrorMessage6","🔑 Las contraseñas no coinciden");
+	    	isValid = false;
+	    }
+	    if( matchCode.size() == 0 && isValid2) {
+    		redirectAttributes.addFlashAttribute("rerrorMessage7", "🔎 El codigo no coincide con nuestros registros");
+    		isValid = false;
+    	}
+	    
+//<Validations>
+//<Insert>		    
+	    if (isValid) {
+	    	as.updateAdmin(user_id, name, username, password);
+	    	redirectAttributes.addFlashAttribute("rerrorMessage8", "📝✔ Datos actualizados");
+	    }
+	    
+	    return "redirect:/editar/admin";
+//<Insert>
+}	
 
     
 
