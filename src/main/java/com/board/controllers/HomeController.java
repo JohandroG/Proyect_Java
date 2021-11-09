@@ -30,7 +30,7 @@ public class HomeController {
     	User current = as.findUsingID(user_id);
 
     	
-    	List<Notice> allnotices = as.findAllN(); 
+    	List<Notice> allnotices = as.findOrdered(); 
     	
     		if(current != null) {
     			model.addAttribute("userInfo", current );
@@ -40,19 +40,6 @@ public class HomeController {
     		
     		return "index.jsp";
     		
-    		
-    		
-    		
-    		
-//    	List<Notice> results = (List<Pool>) session.getAttribute("pool_search");    		
-//    		model.addAttribute("userInfo", current );
-//	    	return "dashboard.jsp";
-	    	
-    	
-//    		model.addAttribute("poolInfo", results );
-    		
-    	
-    	
     	
     }
 	

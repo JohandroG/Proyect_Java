@@ -73,6 +73,21 @@ public void publishNotice(Notice notice) {
 	nr.save(notice);
 }
 
+public List<Notice> findOrdered(){
+	return nr.findOrder();
+}
+
+//-----------
+public List<Notice> searchResults(String word){
+	return nr.findNbyWord(word);
+}
+
+public List<Notice> searchResultsImp(String word){
+	return nr.findNbyWordImp(word);
+}
+//--------------
+
+
 public List<Notice> findAllN(){
 	return nr.findAll();
 }

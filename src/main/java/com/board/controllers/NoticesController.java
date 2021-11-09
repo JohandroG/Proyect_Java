@@ -68,6 +68,39 @@ public String update(@PathVariable("id") Long id,HttpSession session, Model mode
 }
 
 
+
+@RequestMapping( value = "/search", method = RequestMethod.POST )
+public String home(@RequestParam("search") String word,
+		@RequestParam(value = "important", defaultValue = "off") String important,
+		HttpSession session, Model model) {
+	
+	Long user_id =  (Long) session.getAttribute("user_id");
+	User current = as.findUsingID(user_id);
+	
+	if (important.equalsIgnoreCase("off")) {
+		List<Notice> allnotices = as.searchResults(word); 
+		model.addAttribute("noticesInfo", allnotices );
+	}
+	
+	if (important.equalsIgnoreCase("on")) {
+		List<Notice> allnotices = as.searchResultsImp(word); 
+		model.addAttribute("noticesInfo", allnotices );
+	}
+	
+	
+		if(current != null) {
+			model.addAttribute("userInfo", current );
+		}
+
+		
+		return "index.jsp";
+		
+	
+}
+
+
+
+
 //-------------------------------------POST AND FORMS-----------------------------------------------
 
 

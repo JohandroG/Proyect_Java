@@ -32,30 +32,43 @@
 
     <!-- <img src="/images/2pefil.jpg"/> -->
 
-    <div>
-        <c:forEach var="info" items="${noticesInfo}">
-                <div style="margin: 40px; border: 2px solid black;">
-                    
-                    <c:if test="${info.getImportance() != 'off' }"  >
-                        <p>Importante</p>
-                    </c:if>
+    <main>
+        <div class="search">
+            <form method="POST" action="/search">
+                <label for="search">Buscar</label>
+                <input type="text" name="search"/>
 
-                    <c:if test="${info.getLink() != '' }"  >
-                        <a href="${info.getLink()}">Link</a>
-                    </c:if>
+                <label for="important">Important</label>
+                <input type="checkbox" name="important"/>
+                <button type="submit">Search</button>
+            </form>
+        </div>
 
-                    
-                    <c:out value = "${info.getTitle()}" ></c:out>
-                    <c:out value = "${info.getDescription()}" ></c:out>
-                    <c:if test="${userInfo != null}"  >
-                        <a href="/editar/${info.getNotice_id()}">Edit</a>
-                    </c:if>
-                    <a href="/info/${info.getNotice_id()}">Ver mas</a>
-                    <img style="width: 100px;" src="<c:url value="${info.getImg()}"></c:url>" />
-                    <img style="width: 100px;" src="<c:url value="${info.getImg2()}"></c:url>" />
-                </div>
-        </c:forEach>
-    </div>
+        <div>
+            <c:forEach var="info" items="${noticesInfo}">
+                    <div style="margin: 40px; border: 2px solid black;">
+                        
+                        <c:if test="${info.getImportance() != 'off' }"  >
+                            <p>Importante</p>
+                        </c:if>
+        
+                        <c:if test="${info.getLink() != '' }"  >
+                            <a href="${info.getLink()}">Link</a>
+                        </c:if>
+        
+                        
+                        <c:out value = "${info.getTitle()}" ></c:out>
+                        <c:out value = "${info.getDescription()}" ></c:out>
+                        <c:if test="${userInfo != null}"  >
+                            <a href="/editar/${info.getNotice_id()}">Edit</a>
+                        </c:if>
+                        <a href="/info/${info.getNotice_id()}">Ver mas</a>
+                        <img style="width: 100px;" src="<c:url value="${info.getImg()}"></c:url>" />
+                        <img style="width: 100px;" src="<c:url value="${info.getImg2()}"></c:url>" />
+                    </div>
+            </c:forEach>
+        </div>
+    </main>
 
 
 </body>
