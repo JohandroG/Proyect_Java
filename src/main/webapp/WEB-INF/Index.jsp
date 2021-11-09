@@ -30,6 +30,17 @@
             <a href="/logout">Logout</a>
     </c:if>
 
+    <!-- <img src="/images/2pefil.jpg"/> -->
+
+    
+        <c:forEach var="info" items="${noticesInfo}">
+            <div>
+                <img style="width: 100px;" src="<c:url value="${info.getImg()}"></c:url>" />
+                <img style="width: 100px;" src="<c:url value="${info.getImg2()}"></c:url>" />
+            </div>
+        </c:forEach>
+    
+
 
 </body>
 </html>

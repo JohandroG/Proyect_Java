@@ -6,6 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.board.models.Code;
+import com.board.models.Notice;
 import com.board.models.User;
 import com.board.repositories.AssociationRepository;
 import com.board.repositories.CodeRepository;
@@ -39,6 +40,10 @@ public User findUsingID(Long user_id) {
 	return ur.findbyId(user_id);
 }
 
+public List<User> findUsersUsingID(Long user_id) {
+	return ur.findUsersbyId(user_id);
+}
+
 public User getUserByusername( String username ){
 	return ur.UserByusername(username);
 }
@@ -58,6 +63,14 @@ public Boolean validateUser (User currentUser, String password){
 
 
 //-----------------------------------------------Notice--------------------------------------
+
+public void publishNotice(Notice notice) {
+	nr.save(notice);
+}
+
+public List<Notice> findAllN(){
+	return nr.findAll();
+}
 
 
 

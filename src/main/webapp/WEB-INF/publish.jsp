@@ -18,13 +18,23 @@
     
     <main>
         <form action="/publish" method="POST" enctype="multipart/form-data"> 
+            <p class="flashmjs">
+                <c:out value="${errorMessage2}"></c:out>
+            </p>
+
             <div class="left">
 
             <label for="topic">Tema:</label>
             <input type="text" name="topic"/>
+            <p class="flashmjs">
+                <c:out value="${errorMessage3}"></c:out>
+            </p>
 
             <label for="desc">Descripción:</label>
             <textarea type="text" name="desc"></textarea>
+            <p class="flashmjs">
+                <c:out value="${errorMessage4}"></c:out>
+            </p>
 
             </div>
             
@@ -32,7 +42,10 @@
                 <div class="images">
                 <label>Incluye Imagen</label>
                 <input type="file" id="newImage1" name="newImage1" accept="image/png, image/jpeg"/>
-                
+                <p class="flashmjs">
+                    <c:out value="${errorMessage1}"></c:out>
+                </p>
+
                 <label>Imagen Extra</label>
                 <input type="file" id="newImage2" name="newImage2" accept="image/png, image/jpeg"/>
                 </div>

@@ -41,30 +41,7 @@ public UsersController(AppService as) {
         return "login.jsp";
     }
 	
-//========================================Load main page
-    @RequestMapping("/")
-    public String home(HttpSession session, Model model) {
-    	
-    	Long user_id =  (Long) session.getAttribute("user_id");
-    	User current = as.findUsingID(user_id);
-//    	List<Notice> results = (List<Pool>) session.getAttribute("pool_search");
-    	
-    		if(current != null) {
-    			model.addAttribute("userInfo", current );
-    		}
-    		
-    		return "index.jsp";
-    		
-//    		model.addAttribute("userInfo", current );
-//	    	return "dashboard.jsp";
-	    	
-    	
-//    		model.addAttribute("poolInfo", results );
-    		
-    	
-    	
-    	
-    }
+
 	
 //-------------------------------------POST AND FORMS-----------------------------------------------
 	

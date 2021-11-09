@@ -23,6 +23,10 @@ public interface UsersRepository extends CrudRepository <User,Long> {
 	@Query( "SELECT u FROM User u WHERE id = ?1" )
 	User findbyId( Long user_id );
 	
+	@Query( "SELECT u FROM User u WHERE id = ?1" )
+	List<User> findUsersbyId( Long user_id );
+	
+	
 	@Query( "SELECT u FROM User u WHERE username = ?1" )
 	List<User> AllUsersByusername( String username );
 	

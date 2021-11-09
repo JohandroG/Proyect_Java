@@ -31,24 +31,28 @@ public class Notice {
 	private Long notice_id;
 	
 	@NotNull
-	@Size( min = 5, max = 500)
+	@Size( min = 5, max = 400)
 	private String title;
 	
 	@NotNull
-	@Size( min = 5, max = 2000)
+	@Size( min = 5, max = 5000)
 	private String description;
 	
-	@NotNull
-	@Size( min = 5, max = 200)
+	
+	@Size( min = 2, max = 500)
 	private String img;
 	
-	@NotNull
-	@Size( min = 5, max = 200)
+
+	@Size( min = 2, max = 500)
 	private String img2;
 	
-	@NotNull
-	@Size( min = 5, max = 700)
+	
+	@Size(max = 500)
 	private String link;
+	
+	@NotNull
+	@Size( min = 2, max = 10)
+	private String importance;
 //---------------------------------------------
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -81,7 +85,7 @@ public class Notice {
 // Full Version
 	public Notice(Long notice_id, String title,
 			String description,  String img,
-			String img2, String link,
+			String img2, String link, String importance,
 			List<User> users) {
 		this.notice_id = notice_id;
 		this.title = title;
@@ -89,33 +93,48 @@ public class Notice {
 		this.img = img;
 		this.img2 = img2;
 		this.link = link;
+		this.importance = importance;
 		this.users = users;
 	}
 
 // Without ID
 	public Notice(String title,
 			String description,  String img,
-			String img2, String link,
+			String img2, String link, String importance,
 			List<User> users) {
 		this.title = title;
 		this.description = description;
 		this.img = img;
 		this.img2 = img2;
 		this.link = link;
+		this.importance = importance;
 		this.users = users;
 	}
 	
 // Only 1 IMG
 	
 		public Notice(String title,
-				String description,  String img,String link,
+				String description,  String img,String link, String importance,
 				List<User> users) {
 			this.title = title;
 			this.description = description;
 			this.img = img;
 			this.link = link;
+			this.importance = importance;
 			this.users = users;
 		}
+		
+// Only 1 IMG
+		
+			public Notice(String title,
+					String description,String link, String importance,
+					List<User> users) {
+				this.title = title;
+				this.description = description;
+				this.link = link;
+				this.importance = importance;
+				this.users = users;
+			}
 
 //--------------------------------------------------------------------------------------------
 		
@@ -129,6 +148,14 @@ public class Notice {
 
 		public String getTitle() {
 			return title;
+		}
+
+		public String getImportance() {
+			return importance;
+		}
+
+		public void setImportance(String importance) {
+			this.importance = importance;
 		}
 
 		public Date getCreated_at() {
