@@ -72,7 +72,13 @@ public List<Notice> findAllN(){
 	return nr.findAll();
 }
 
+public Notice findNUsingID(Long notice_id) {
+	return nr.findNbyID(notice_id);
+}
 
+public void deleteNotice(Long id) {
+	nr.deleteById(id);
+}
 
 //-----------------------------------------------Code--------------------------------------
 

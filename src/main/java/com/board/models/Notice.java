@@ -123,8 +123,25 @@ public class Notice {
 			this.importance = importance;
 			this.users = users;
 		}
+
 		
-// Only 1 IMG
+		
+// Only 1 IMG (With ID)
+		
+			public Notice(Long notice_id,String title,
+					String description,  String img,String link, String importance,
+					List<User> users) {
+				this.notice_id = notice_id;
+				this.title = title;
+				this.description = description;
+				this.img = img;
+				this.link = link;
+				this.importance = importance;
+				this.users = users;
+			}
+			
+		
+// NO IMG
 		
 			public Notice(String title,
 					String description,String link, String importance,
@@ -135,6 +152,19 @@ public class Notice {
 				this.importance = importance;
 				this.users = users;
 			}
+			
+// NO IMG (With ID)
+	
+		public Notice(Long notice_id, String title,
+				String description,String link, String importance,
+				List<User> users) {
+			this.notice_id = notice_id;
+			this.title = title;
+			this.description = description;
+			this.link = link;
+			this.importance = importance;
+			this.users = users;
+		}
 
 //--------------------------------------------------------------------------------------------
 		

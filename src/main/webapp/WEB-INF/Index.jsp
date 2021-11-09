@@ -32,14 +32,30 @@
 
     <!-- <img src="/images/2pefil.jpg"/> -->
 
-    
+    <div>
         <c:forEach var="info" items="${noticesInfo}">
-            <div>
-                <img style="width: 100px;" src="<c:url value="${info.getImg()}"></c:url>" />
-                <img style="width: 100px;" src="<c:url value="${info.getImg2()}"></c:url>" />
-            </div>
+                <div style="margin: 40px; border: 2px solid black;">
+                    
+                    <c:if test="${info.getImportance() != 'off' }"  >
+                        <p>Importante</p>
+                    </c:if>
+
+                    <c:if test="${info.getLink() != '' }"  >
+                        <a href="${info.getLink()}">Link</a>
+                    </c:if>
+
+                    <c:out value = "${info.getImportance()}" ></c:out>
+                    <c:out value = "${info.getTitle()}" ></c:out>
+                    <c:out value = "${info.getDescription()}" ></c:out>
+                    <c:if test="${userInfo != null}"  >
+                        <a href="/editar/${info.getNotice_id()}">Edit</a>
+                    </c:if>
+                    <a href="/info/${info.getNotice_id()}">Ver mas</a>
+                    <img style="width: 100px;" src="<c:url value="${info.getImg()}"></c:url>" />
+                    <img style="width: 100px;" src="<c:url value="${info.getImg2()}"></c:url>" />
+                </div>
         </c:forEach>
-    
+    </div>
 
 
 </body>

@@ -36,7 +36,10 @@ public class HomeController {
     			model.addAttribute("userInfo", current );
     		}
     		model.addAttribute("noticesInfo", allnotices );
+    		
+    		
     		return "index.jsp";
+    		
     		
     		
     		

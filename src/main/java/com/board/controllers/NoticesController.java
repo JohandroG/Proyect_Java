@@ -7,7 +7,9 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,15 +42,37 @@ public String Register(HttpSession session) {
 		return "redirect:/";
 	}
 	
+	
+	
     return "publish.jsp";
+}
+
+
+@RequestMapping(value="/editar/{id}", method=RequestMethod.GET)
+public String update(@PathVariable("id") Long id,HttpSession session, Model model) {
+	
+	Long user_id =  (Long) session.getAttribute("user_id");
+	User current = as.findUsingID(user_id);
+	if(current == null) {
+		return "redirect:/";
+	}
+	
+	
+	Notice currentN = as.findNUsingID(id);
+
+	model.addAttribute("noticeInfo", currentN );
+	model.addAttribute("UserInfo", current );
+
+    return "updatepublished.jsp";
 }
 
 
 //-------------------------------------POST AND FORMS-----------------------------------------------
 
 
+//================================================
 @RequestMapping( value = "/publish", method = RequestMethod.POST )
-public String addNewImage(@RequestParam("topic") String topic,
+public String publish(@RequestParam("topic") String topic,
 		@RequestParam("desc") String desc,
 		@RequestParam("newImage1") MultipartFile multipartFile1,
 		@RequestParam("newImage2") MultipartFile multipartFile2,
@@ -123,8 +147,88 @@ public String addNewImage(@RequestParam("topic") String topic,
 
 
 
+//================================================
+@RequestMapping( value = "/update", method = RequestMethod.POST )
+public String edit(@RequestParam("topic") String topic,
+		@RequestParam("desc") String desc,
+		@RequestParam("newImage1") MultipartFile multipartFile1,
+		@RequestParam("newImage2") MultipartFile multipartFile2,
+		@RequestParam("link") String link,
+		@RequestParam("notice_id") Long notice_id,
+		@RequestParam(value = "important", defaultValue = "off") String important , 
+		HttpSession session, RedirectAttributes redirectAttributes
+		) throws IOException {
 
+	
+	
+//<Validations>
+	boolean isValid = true;
+	
+	if (topic.isEmpty() || desc.isEmpty() ) {
+		redirectAttributes.addFlashAttribute("errorMessage2", "📃 El tema o la descripción no pueden estar vacíos");
+		isValid = false;
+	}
+	if (topic.length() < 5) {
+		redirectAttributes.addFlashAttribute("errorMessage3", "🧧 El tema debe ser de al menos 5 caracteres");
+		isValid = false;
+	}
+	if (desc.length() < 5) {
+		redirectAttributes.addFlashAttribute("errorMessage4", "🧧 La descripcion debe ser de al menos 5 caracteres");
+		isValid = false;
+	}
+//<Validations>
 
+	if(isValid) {
+		
+		Long user_id =  (Long) session.getAttribute("user_id");
+		List<User> current = as.findUsersUsingID(user_id);
+		User currentU = as.findUsingID(user_id);
+
+		
+		String fileName1 = "1" + currentU.getUser_id() + StringUtils.cleanPath(multipartFile1.getOriginalFilename());
+		String fileName2 = "2" + currentU.getUser_id() + StringUtils.cleanPath(multipartFile2.getOriginalFilename());
+		
+		
+		if (fileName2.equals("2" + currentU.getUser_id()) && fileName1.equals("1" + currentU.getUser_id())) {
+			Notice newnotice = new Notice(notice_id,topic,desc,link,important,current);
+			as.publishNotice(newnotice);
+			return "redirect:/editar/" + notice_id;
+		}
+		
+		
+	    if (!fileName2.equals("2" + currentU.getUser_id()) && !fileName1.equals("1" + currentU.getUser_id())) {
+		Notice newnotice = new Notice(notice_id,topic,desc,"/images/" + fileName1,"/images/" + fileName2,link,important,current);
+		as.publishNotice(newnotice);
+		String fileLocation = new File("src/main/resources/static/images").getAbsolutePath();
+		FileUploadUtil.saveFile(fileLocation, fileName1, multipartFile1);
+		FileUploadUtil.saveFile(fileLocation, fileName2, multipartFile2);
+		return "redirect:/editar/" + notice_id;
+	    }
+		
+	    if (!fileName1.equals("1" + currentU.getUser_id())) {
+	    	Notice newnotice = new Notice(notice_id,topic,desc,"/images/" + fileName1, link,important,current);
+	    	as.publishNotice(newnotice);
+	    	String fileLocation = new File("src/main/resources/static/images").getAbsolutePath();
+	        FileUploadUtil.saveFile(fileLocation, fileName1, multipartFile1);
+	        return "redirect:/editar/" + notice_id;
+	    }
+	    
+	    if (!fileName2.equals("2" + currentU.getUser_id()) && fileName1.equals("1" + currentU.getUser_id())) {
+			redirectAttributes.addFlashAttribute("errorMessage1", "🧧 Error: Utiliza el primer espacio para subir una sola imagen");
+	    }
+	    
+		}
+	    
+		return "redirect:/editar/" + notice_id;
+		
+	}
+
+	
+	@RequestMapping( value = "/delete/{id}", method = RequestMethod.GET )
+	public String delete(@PathVariable("id") Long id) {
+		as.deleteNotice(id);
+		return "redirect:/";
+	}
 
 
 
