@@ -34,11 +34,16 @@ public NoticesController(AppService as) {
  
 //================================================
 @RequestMapping(value="/publicar", method=RequestMethod.GET)
-public String Register(HttpSession session) {
+public String Register(HttpSession session, Model model) {
 	
 	Long user_id =  (Long) session.getAttribute("user_id");
 	User current = as.findUsingID(user_id);
 
+		if(current != null) {
+			model.addAttribute("userInfo", current );
+		}
+	
+	
 	if(current == null) {
 		return "redirect:/";
 	}
@@ -56,6 +61,9 @@ public String update(@PathVariable("id") Long id,HttpSession session, Model mode
 	User current = as.findUsingID(user_id);
 	if(current == null) {
 		return "redirect:/";
+	}
+	if(current != null) {
+		model.addAttribute("userInfo", current );
 	}
 	
 	
@@ -76,6 +84,7 @@ public String home(@RequestParam("search") String word,
 	
 	Long user_id =  (Long) session.getAttribute("user_id");
 	User current = as.findUsingID(user_id);
+	
 	
 	if (word.isEmpty() && important.equalsIgnoreCase("off")) {
 		return "redirect:/";

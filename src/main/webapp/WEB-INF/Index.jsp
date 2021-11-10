@@ -15,8 +15,12 @@
 <link rel="stylesheet" href="/css/normalize.css"/>
 <link rel="stylesheet" href="/css/index.css"/>
 <link rel="stylesheet" href="/css/navbar.css"/>
+<!-- imports y CSS personal -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap" rel="stylesheet">
 </head>
 <body id="body">
 
@@ -98,21 +102,6 @@
 </div>
 
 
-
-
-
-
-<!-- <div>
-    <a href="/publicar">Publicar Anuncio</a>
-    |
-    <a href="/registrarse">Registrarse</a> 
-    | 
-    <a href="/iniciar/sesion">Iniciar Sesion</a>
-    |
-    <a href="/cambiar/codigo">Cambiar codigo host</a>
-    |
-    <a href="/editar/admin">editar admin</a>
-</div> -->
 
 
     <!-- <img src="/images/2pefil.jpg"/> -->

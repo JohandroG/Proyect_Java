@@ -31,13 +31,32 @@ public UsersController(AppService as) {
 
 //========================================Load register
 	@RequestMapping(value="/registrarse", method=RequestMethod.GET)
-    public String Register() {
+    public String Register(HttpSession session, Model model) {
+    	
+    	Long user_id =  (Long) session.getAttribute("user_id");
+    	User current = as.findUsingID(user_id);
+
+    		if(current != null) {
+    			model.addAttribute("userInfo", current );
+    			return "redirect:/";
+    		}
+    		
+
+    		
         return "register.jsp";
     }
 
 //========================================Load login
 	@RequestMapping(value="/iniciar/sesion", method=RequestMethod.GET)
-    public String Login() {
+    public String Login(HttpSession session, Model model) {
+    	
+    	Long user_id =  (Long) session.getAttribute("user_id");
+    	User current = as.findUsingID(user_id);
+
+    		if(current != null) {
+    			model.addAttribute("userInfo", current );
+    			return "redirect:/";
+    		}
         return "login.jsp";
     }
 
@@ -50,6 +69,10 @@ public UsersController(AppService as) {
 
 		if(current == null) {
 			return "redirect:/";
+		}
+		
+		if(current != null) {
+			model.addAttribute("userInfo", current );
 		}
 		
 		model.addAttribute("adminInfo", current );

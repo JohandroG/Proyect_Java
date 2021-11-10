@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,13 +27,16 @@ public class CodeController {
 //----------------------------------------LOAD SITE----------------------------------------------------
 	
 	@RequestMapping(value="/cambiar/codigo", method=RequestMethod.GET)
-	public String Code(HttpSession session) {
+	public String Code(HttpSession session,Model model) {
 		
 		Long user_id =  (Long) session.getAttribute("user_id");
 		User current = as.findUsingID(user_id);
 
 		if(current == null) {
 			return "redirect:/";
+		}
+		if(current != null) {
+			model.addAttribute("userInfo", current );
 		}
 		
 		

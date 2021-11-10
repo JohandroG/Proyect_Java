@@ -89,7 +89,7 @@ header{
 }
 
 .options__menu{
-    padding: 20px 30px;
+    padding: 20px 10px;
     position: absolute;
     top: 80px;
 }
@@ -100,14 +100,18 @@ header{
     display: block;
     position: relative;
     transition: all 300ms;
+    padding: 0px 15px;
+    border-radius: 10px;
 }
 
 .options__menu a:hover{
     color: white;
+    background: rgba(151, 151, 151, 0.411);
 }
 
 .options__menu .option{
-    padding: 20px 0px;
+    padding: 10px 0px;
+    margin: 10px 0px;
     display: flex;
     align-items: center;
     position: relative;
@@ -122,6 +126,7 @@ header{
 .options__menu .option h4{
     font-weight: 300;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 a.selected{
@@ -132,10 +137,10 @@ a.selected{
     content: '';
     width: 3px;
     background: white;
-    height: 80%;
+    height: 81%;
     position: absolute;
     top: 10%;
-    left: -30px;
+    left: -10px;
 }
 
 /*Clases para usar en JavaScript*/
