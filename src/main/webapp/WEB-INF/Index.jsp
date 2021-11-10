@@ -10,11 +10,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Tablero de Anuncios</title>
-
+<link rel="stylesheet" href="/css/index.css"/>
+<link rel="stylesheet" href="/css/navbar.css"/>
 </head>
 <body>
 
-<nav>
+
+
+
+
+
+
+
+
+<div>
     <a href="/publicar">Publicar Anuncio</a>
     |
     <a href="/registrarse">Registrarse</a> 
@@ -24,7 +33,7 @@
     <a href="/cambiar/codigo">Cambiar codigo host</a>
     |
     <a href="/editar/admin">editar admin</a>
-</nav>
+</div>
 
     <c:if test="${userInfo != null}"  >
             <a href="/logout">Logout</a>
@@ -62,9 +71,9 @@
         
                         
                         <c:out value = "${info.getTitle()}" ></c:out>
-                        <p id="description">
+                        <div id="description">
                             <c:out value = "${info.getDescription()}" ></c:out>
-                        </p>
+                        </div>
                         <c:if test="${userInfo != null}"  >
                             <a href="/editar/${info.getNotice_id()}">Edit</a>
                         </c:if>
@@ -77,6 +86,7 @@
     </main>
 
     <script type="text/javascript" src="/js/index.js"></script>
+    <!-- <script type="text/javascript" src="/js/navbar.js"></script> -->
 
 </body>
 </html>
