@@ -32,9 +32,11 @@ public class HomeController {
     	
     	List<Notice> allnotices = as.findOrdered(); 
     	
+
     		if(current != null) {
     			model.addAttribute("userInfo", current );
     		}
+    		
     		model.addAttribute("noticesInfo", allnotices );
     		
     		

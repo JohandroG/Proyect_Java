@@ -31,5 +31,8 @@ public interface NoticeRepository extends CrudRepository <Notice,Long> {
 	@Query( value = "SELECT * FROM notices WHERE title LIKE %?1% and importance = 'on' ORDER BY created_at DESC ", nativeQuery=true )
 	List<Notice> findNbyWordImp( String word);
 
+	@Query( value = "SELECT * FROM notices WHERE importance = 'on' ORDER BY created_at DESC;", nativeQuery=true )
+	List<Notice> findIMP();
+	
 }
 

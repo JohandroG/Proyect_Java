@@ -77,11 +77,19 @@ public String home(@RequestParam("search") String word,
 	Long user_id =  (Long) session.getAttribute("user_id");
 	User current = as.findUsingID(user_id);
 	
+	if (word.isEmpty() && important.equalsIgnoreCase("off")) {
+		return "redirect:/";
+	}
+	
+	if (word.isEmpty() && important.equalsIgnoreCase("on")) {
+		List<Notice> allnotices = as.searchImp(); 
+		model.addAttribute("noticesInfo", allnotices );
+	}
+	
 	if (important.equalsIgnoreCase("off")) {
 		List<Notice> allnotices = as.searchResults(word); 
 		model.addAttribute("noticesInfo", allnotices );
 	}
-	
 	if (important.equalsIgnoreCase("on")) {
 		List<Notice> allnotices = as.searchResultsImp(word); 
 		model.addAttribute("noticesInfo", allnotices );
@@ -92,7 +100,7 @@ public String home(@RequestParam("search") String word,
 			model.addAttribute("userInfo", current );
 		}
 
-		
+		model.addAttribute("word", "filter" );
 		return "index.jsp";
 		
 	

@@ -41,12 +41,16 @@
                 <label for="important">Important</label>
                 <input type="checkbox" name="important"/>
                 <button type="submit">Search</button>
+
+                <c:if test="${word == 'filter' }"  >
+                    <a href="/">Quitar filtro</a>
+                </c:if>
             </form>
         </div>
 
         <div>
             <c:forEach var="info" items="${noticesInfo}">
-                    <div style="margin: 40px; border: 2px solid black;">
+                    <div class="info" style="margin: 40px; border: 2px solid black;">
                         
                         <c:if test="${info.getImportance() != 'off' }"  >
                             <p>Importante</p>
@@ -58,7 +62,9 @@
         
                         
                         <c:out value = "${info.getTitle()}" ></c:out>
-                        <c:out value = "${info.getDescription()}" ></c:out>
+                        <p id="description">
+                            <c:out value = "${info.getDescription()}" ></c:out>
+                        </p>
                         <c:if test="${userInfo != null}"  >
                             <a href="/editar/${info.getNotice_id()}">Edit</a>
                         </c:if>
@@ -70,6 +76,7 @@
         </div>
     </main>
 
+    <script type="text/javascript" src="/js/index.js"></script>
 
 </body>
 </html>

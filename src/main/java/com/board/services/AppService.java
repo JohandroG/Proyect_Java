@@ -85,6 +85,11 @@ public List<Notice> searchResults(String word){
 public List<Notice> searchResultsImp(String word){
 	return nr.findNbyWordImp(word);
 }
+
+public List<Notice> searchImp(){
+	return nr.findIMP();
+}
+
 //--------------
 
 
