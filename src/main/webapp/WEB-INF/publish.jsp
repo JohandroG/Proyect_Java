@@ -97,10 +97,6 @@
     </div>
 </div>
 
-
-    <nav>
-        <a href="/">Back</a>
-    </nav>
     
     <main>
         <form action="/publish" method="POST" enctype="multipart/form-data"> 

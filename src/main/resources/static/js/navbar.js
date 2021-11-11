@@ -13,6 +13,11 @@ function open_close_menu(){
     side_menu.classList.toggle("menu__side_move");
 }
 
+if (window.innerWidth < 760){
+
+    body.classList.add("body_move");
+    side_menu.classList.add("menu__side_move");
+}
 
 window.addEventListener("resize",function(){
 

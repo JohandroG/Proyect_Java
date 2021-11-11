@@ -13,14 +13,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tablero de Anuncios</title>
 <link rel="stylesheet" href="/css/normalize.css"/>
-<link rel="stylesheet" href="/css/index.css"/>
 <link rel="stylesheet" href="/css/navbar.css"/>
+<link rel="stylesheet" href="/css/index.css"/>
 <!-- imports y CSS personal -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,500;1,100;1,300;1,500&display=swap" rel="stylesheet">
 </head>
 <body id="body">
 
@@ -101,50 +97,90 @@
     </div>
 </div>
 
-
-
-
-    <!-- <img src="/images/2pefil.jpg"/> -->
-
     <main>
         <div class="search">
             <form method="POST" action="/search">
-                <label for="search">Buscar</label>
-                <input type="text" name="search"/>
+                <div class="searchf">
+                    <div class="searchdiv">
+                        <input id="searchform" type="text" placeholder="Buscar" name="search"/>
+                        <button id="searchbutt" type="submit"><i class="bi bi-search"></i></button>
+                    </div>
+    
+                    <div class="searchdiv imp">
+                        <input id="chek" type="checkbox" name="important"/>
+                        <label id="chekinfo" for="important">Importantes</label>
+                        
+                        <c:if test="${word == 'filter' }"  >
+                        <a id="fil" href="/">Quitar filtro</a>
+                        </c:if>
+                    </div>
 
-                <label for="important">Important</label>
-                <input type="checkbox" name="important"/>
-                <button type="submit">Search</button>
-
-                <c:if test="${word == 'filter' }"  >
-                    <a href="/">Quitar filtro</a>
-                </c:if>
+                    </div>
             </form>
         </div>
 
-        <div>
+        <div class="notices">
             <c:forEach var="info" items="${noticesInfo}">
-                    <div class="info" style="margin: 40px; border: 2px solid black;">
+                    <div class="info">
                         
-                        <c:if test="${info.getImportance() != 'off' }"  >
-                            <p>Importante</p>
-                        </c:if>
-        
-                        <c:if test="${info.getLink() != '' }"  >
-                            <a href="${info.getLink()}">Link</a>
-                        </c:if>
-        
-                        
-                        <c:out value = "${info.getTitle()}" ></c:out>
-                        <div id="description">
-                            <c:out value = "${info.getDescription()}" ></c:out>
+                        <div class="top">
+
+                            <div>
+                                <c:if test="${info.getImportance() != 'off' }"  >
+                                <div class="important">
+                                        <p>Importante</p>
+                                </div>
+                                </c:if>
+                            </div>
+                            
+                            <div>
+                                <c:if test="${userInfo != null}"  >
+                                <div class="edit">
+                                    <a href="/editar/${info.getNotice_id()}">Editar</a>
+                                </div>
+                                </c:if>
+                            </div>
+
                         </div>
-                        <c:if test="${userInfo != null}"  >
-                            <a href="/editar/${info.getNotice_id()}">Edit</a>
-                        </c:if>
-                        <a href="/info/${info.getNotice_id()}">Ver mas</a>
-                        <img style="width: 100px;" src="<c:url value="${info.getImg()}"></c:url>" />
-                        <img style="width: 100px;" src="<c:url value="${info.getImg2()}"></c:url>" />
+
+                        <div class="noticeinfo">
+                            <div id="imgcontainer">
+                                <img id="img" src="<c:url value="${info.getImg()}"></c:url>" />
+                            </div>
+                            
+                            <div class="generalinfo">
+                                <div class="tianddesc">
+                                    <div class="title">
+                                            <p id="title">
+                                                <c:out value = "${info.getTitle()}" ></c:out>
+                                            </p>
+                                    </div>
+                                    
+                                    <div id="description">
+                                        <c:out value = "${info.getDescription()}" ></c:out>
+                                    </div>
+                                </div>
+                                
+                                <div class="linkandmore">
+                                    <div class="link">
+                                        <c:if test="${info.getLink() != '' }"  >
+                                            <a href="${info.getLink()}">Link</a>
+                                        </c:if>
+                                    </div>
+                                    
+                                    
+                                    <div class="more">
+                                        <a href="/info/${info.getNotice_id()}">Ver mas</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+
                     </div>
             </c:forEach>
         </div>
