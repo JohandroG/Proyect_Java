@@ -14,7 +14,6 @@ function open_close_menu(){
 }
 
 if (window.innerWidth < 760){
-
     body.classList.add("body_move");
     side_menu.classList.add("menu__side_move");
 }
