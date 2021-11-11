@@ -22,7 +22,10 @@
 
 <header>
     <div class="icon__menu">
-        <i class="bi bi-menu-button-wide-fill" id="btn_open"></i>
+        <i class="bi bi-list" id="btn_open"></i>
+    </div>
+    <div class="logo">
+        <h1>Tablero de Anuncios</h1>
     </div>
 </header>
 
@@ -125,18 +128,32 @@
                         
                         <div class="top">
 
+
+
+                            <!-- <div class="anuncio">
+                                <h4>Anuncio</h4>
+                            </div> -->
+
+
                             <div>
                                 <c:if test="${info.getImportance() != 'off' }"  >
                                 <div class="important">
-                                        <p>Importante</p>
+                                        <p>Importante!</p>
                                 </div>
                                 </c:if>
                             </div>
+
+                            
                             
                             <div>
                                 <c:if test="${userInfo != null}"  >
                                 <div class="edit">
-                                    <a href="/editar/${info.getNotice_id()}">Editar</a>
+                                    <a href="/editar/${info.getNotice_id()}">
+                                        <div class="edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                            <h4>Editar</h4>
+                                        </div>
+                                    </a>
                                 </div>
                                 </c:if>
                             </div>
@@ -144,36 +161,49 @@
                         </div>
 
                         <div class="noticeinfo">
+                            
                             <div id="imgcontainer">
-                                <img id="img" src="<c:url value="${info.getImg()}"></c:url>" />
+                                <img alt="Cargando Imagen" id="img" src="<c:url value="${info.getImg()}"></c:url>" />
                             </div>
                             
                             <div class="generalinfo">
                                 <div class="tianddesc">
                                     <div class="title">
-                                            <p id="title">
-                                                <c:out value = "${info.getTitle()}" ></c:out>
-                                            </p>
+                                                ${info.getTitle()}
                                     </div>
                                     
                                     <div id="description">
-                                        <c:out value = "${info.getDescription()}" ></c:out>
+                                        ${info.getDescription()}
                                     </div>
                                 </div>
                                 
                                 <div class="linkandmore">
-                                    <div class="link">
+
+                                    
                                         <c:if test="${info.getLink() != '' }"  >
-                                            <a href="${info.getLink()}">Link</a>
+                                        <div>
+                                            <a href="${info.getLink()}">
+                                                <div class="link">
+                                                    <i class="bi bi-link-45deg"></i>
+                                                    <h4>Enlace</h4>
+                                                </div>
+                                            </a>
+                                        </div>
                                         </c:if>
-                                    </div>
                                     
                                     
-                                    <div class="more">
-                                        <a href="/info/${info.getNotice_id()}">Ver mas</a>
+                                    
+                                    <div class="more2">
+                                        <a href="/info/${info.getNotice_id()}">
+                                            <div class="more">
+                                                <i class="bi bi-card-heading"></i>
+                                                <h4>Ver más</h4>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         
                         
