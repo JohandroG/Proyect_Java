@@ -101,6 +101,39 @@
 </div>
 
     <main>
+
+
+        <div class="messages">
+            <p class="flashmjs">
+                <c:out value="${indexmessage1}"></c:out>
+            </p>
+            <p class="flashmjs">
+                <c:out value="${indexmessage2}"></c:out>
+            </p>
+            <p class="flashmjs">
+                <c:out value="${indexmessage3}"></c:out>
+            </p>
+            <p class="flashmjs">
+                <c:out value="${indexmessage4}"></c:out>
+            </p>
+            <p class="flashmjs">
+                <c:out value="${indexmessage5}"></c:out>
+            </p>
+            <p class="flashmjs">
+                <c:out value="${indexmessage6}"></c:out>
+            </p>
+            <p class="flashmjs">
+                <c:out value="${indexmessage7}"></c:out>
+            </p>
+            <p class="flashmjs">
+                <c:out value="${indexmessage8}"></c:out>
+            </p>
+            <p class="flashmjs">
+                <c:out value="${indexmessage9}"></c:out>
+            </p>
+        </div>
+
+
         <div class="search">
             <form method="POST" action="/search">
                 <div class="searchf">

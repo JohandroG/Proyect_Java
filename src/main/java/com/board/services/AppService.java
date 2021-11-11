@@ -66,6 +66,10 @@ public void updateAdmin(Long id, String name,String username, String password) {
 	ur.updateUser(id, name, username, encryptedPassword);
 }
 
+public void deleteuser(User user) {
+	ur.delete(user);
+}
+
 
 //-----------------------------------------------Notice--------------------------------------
 

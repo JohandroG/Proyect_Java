@@ -80,13 +80,14 @@ public String update(@PathVariable("id") Long id,HttpSession session, Model mode
 @RequestMapping( value = "/search", method = RequestMethod.POST )
 public String home(@RequestParam("search") String word,
 		@RequestParam(value = "important", defaultValue = "off") String important,
-		HttpSession session, Model model) {
+		HttpSession session, Model model, RedirectAttributes redirectAttributes) {
 	
 	Long user_id =  (Long) session.getAttribute("user_id");
 	User current = as.findUsingID(user_id);
 	
 	
 	if (word.isEmpty() && important.equalsIgnoreCase("off")) {
+		redirectAttributes.addFlashAttribute("indexmessage4", "❓ El campo de busqueda está vacío, Ingresa algo para buscar");
 		return "redirect:/";
 	}
 	
@@ -165,7 +166,8 @@ public String publish(@RequestParam("topic") String topic,
 	if (fileName2.equals("2" + currentU.getUser_id()) && fileName1.equals("1" + currentU.getUser_id())) {
 		Notice newnotice = new Notice(topic,desc,link,important,current);
 		as.publishNotice(newnotice);
-		return "redirect:/publicar";
+		redirectAttributes.addFlashAttribute("indexmessage5", "📃✔ Anuncio publicado con exito!");
+		return "redirect:/";
 	}
 	
 	
@@ -175,7 +177,8 @@ public String publish(@RequestParam("topic") String topic,
 	String fileLocation = new File("src/main/resources/static/images").getAbsolutePath();
 	FileUploadUtil.saveFile(fileLocation, fileName1, multipartFile1);
 	FileUploadUtil.saveFile(fileLocation, fileName2, multipartFile2);
-	return "redirect:/publicar";
+	redirectAttributes.addFlashAttribute("indexmessage5", "📃✔ Anuncio publicado con exito!");
+	return "redirect:/";
     }
 	
     if (!fileName1.equals("1" + currentU.getUser_id())) {
@@ -183,7 +186,8 @@ public String publish(@RequestParam("topic") String topic,
     	as.publishNotice(newnotice);
     	String fileLocation = new File("src/main/resources/static/images").getAbsolutePath();
         FileUploadUtil.saveFile(fileLocation, fileName1, multipartFile1);
-    	return "redirect:/publicar";
+        redirectAttributes.addFlashAttribute("indexmessage5", "📃✔ Anuncio publicado con exito!");
+		return "redirect:/";
     }
     
     if (!fileName2.equals("2" + currentU.getUser_id()) && fileName1.equals("1" + currentU.getUser_id())) {
@@ -262,7 +266,8 @@ public String edit(@RequestParam("topic") String topic,
 			Notice newnotice = new Notice(notice_id,topic,desc,link,important,current);
 			as.publishNotice(newnotice);
 			
-			return "redirect:/editar/" + notice_id;
+			redirectAttributes.addFlashAttribute("indexmessage6", "📃✔ Anuncio actualizado con exito!");
+			return "redirect:/";
 		}
 		
 		
@@ -285,7 +290,8 @@ public String edit(@RequestParam("topic") String topic,
 		String fileLocation = new File("src/main/resources/static/images").getAbsolutePath();
 		FileUploadUtil.saveFile(fileLocation, fileName1, multipartFile1);
 		FileUploadUtil.saveFile(fileLocation, fileName2, multipartFile2);
-		return "redirect:/editar/" + notice_id;
+		redirectAttributes.addFlashAttribute("indexmessage6", "📃✔ Anuncio actualizado con exito!");
+		return "redirect:/";
 	    }
 		
 	    if (!fileName1.equals("1" + currentU.getUser_id())) {
@@ -307,7 +313,8 @@ public String edit(@RequestParam("topic") String topic,
 	    	String fileLocation = new File("src/main/resources/static/images").getAbsolutePath();
 	        FileUploadUtil.saveFile(fileLocation, fileName1, multipartFile1);
 
-	        return "redirect:/editar/" + notice_id;
+	        redirectAttributes.addFlashAttribute("indexmessage6", "📃✔ Anuncio actualizado con exito!");
+			return "redirect:/";
 	    }
 	    
 	    if (!fileName2.equals("2" + currentU.getUser_id()) && fileName1.equals("1" + currentU.getUser_id())) {
@@ -325,7 +332,8 @@ public String edit(@RequestParam("topic") String topic,
 	@RequestMapping( value = "/delete", method = RequestMethod.POST )
 	public String delete(@RequestParam("notice_id") Long notice_id,
 			@RequestParam("img2") String img2,
-			@RequestParam("img1") String img1
+			@RequestParam("img1") String img1,
+			RedirectAttributes redirectAttributes
 			){
 		
 		if (!img1.isEmpty()) {
@@ -345,6 +353,7 @@ public String edit(@RequestParam("topic") String topic,
 		//--------------
 		
 		
+		redirectAttributes.addFlashAttribute("indexmessage7", "📃❌ Anuncio eliminado con exito!");
 		return "redirect:/";
 	}
 

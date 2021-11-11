@@ -1,5 +1,6 @@
 package com.board.controllers;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -137,6 +138,7 @@ public UsersController(AppService as) {
 	    	
 	    	User unew = as.getUserByusername(username);
 	    	session.setAttribute("user_id", unew.getUser_id());
+	    	redirectAttributes.addFlashAttribute("indexmessage1", "✅😀 Registro completado con exito");
 	    	
 	    	return "redirect:/";
 	    }
@@ -174,6 +176,7 @@ public UsersController(AppService as) {
     		if( as.validateUser(current, lpassword) ) {
     			User u = as.getUserByusername(lusername);
 		    	session.setAttribute("user_id", u.getUser_id());
+		    	redirectAttributes.addFlashAttribute("indexmessage2", "✔🎫 Iniciaste sesión exitosamente");
 		    	return "redirect:/";
 			}
 			else {
@@ -242,7 +245,8 @@ public UsersController(AppService as) {
 //<Insert>		    
 	    if (isValid) {
 	    	as.updateAdmin(user_id, name, username, password);
-	    	redirectAttributes.addFlashAttribute("rerrorMessage8", "📝✔ Datos actualizados");
+	    	redirectAttributes.addFlashAttribute("indexmessage8", "📋 Tus datos han sido actualizados");
+			return "redirect:/";
 	    }
 	    
 	    return "redirect:/editar/admin";
@@ -254,8 +258,30 @@ public UsersController(AppService as) {
     
 //=============================== LOGOUT
     @RequestMapping("/logout")
-    public String logout( HttpSession session ) {
+    public String logout( HttpSession session, RedirectAttributes redirectAttributes ) {
 		session.removeAttribute("user_id");
+		redirectAttributes.addFlashAttribute("indexmessage3", "🔐 Cerraste la sesión");
+		return "redirect:/";
+	}
+    
+    
+    
+    @RequestMapping( value = "/delete/myuser", method = RequestMethod.GET )
+	public String delete(RedirectAttributes redirectAttributes,HttpSession session){
+		
+		
+    	Long user_id =  (Long) session.getAttribute("user_id");
+    	User current = as.findUsingID(user_id);
+
+    		if(current != null) {
+    			as.deleteuser(current);
+    			
+    			redirectAttributes.addFlashAttribute("indexmessage9", "👔❌ Tu Usuario ha sido eliminado!");
+    			return "redirect:/";
+    		}
+		
+		
+		//--------------
 		return "redirect:/";
 	}
 	

@@ -175,6 +175,8 @@ font-size: 15px;
 
 #imgcontainer{
       padding: 10px;
+      display: flex;
+      justify-content: center;
 }
 
 

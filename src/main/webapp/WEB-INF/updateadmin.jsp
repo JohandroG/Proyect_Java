@@ -153,6 +153,7 @@
     
                 <button type="submit">Actualizar</button>
             </form>
+            <a href="/delete/myuser">ELIMINAR MI CUENTA</a>
         </div>
     </main>
 
