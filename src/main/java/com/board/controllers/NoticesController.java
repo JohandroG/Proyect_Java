@@ -75,6 +75,27 @@ public String update(@PathVariable("id") Long id,HttpSession session, Model mode
     return "updatepublished.jsp";
 }
 
+//================================================++++++++++++++++++
+@RequestMapping(value="/info/{id}", method=RequestMethod.GET)
+public String info(@PathVariable("id") Long id,HttpSession session, Model model) {
+	
+	Long user_id =  (Long) session.getAttribute("user_id");
+	User current = as.findUsingID(user_id);
+	
+	
+	if(current != null) {
+		model.addAttribute("userInfo", current );
+	}
+	
+	
+	Notice currentN = as.findNUsingID(id);
+
+	model.addAttribute("noticesInfo", currentN );
+	model.addAttribute("userInfo", current );
+
+  return "info.jsp";
+}
+
 
 
 @RequestMapping( value = "/search", method = RequestMethod.POST )

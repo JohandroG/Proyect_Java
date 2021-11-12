@@ -21,9 +21,12 @@
 
    	
    	<header>
-    <div class="icon__menu">
-        <i class="bi bi-menu-button-wide-fill" id="btn_open"></i>
-    </div>
+        <div class="icon__menu">
+            <i class="bi bi-list" id="btn_open"></i>
+        </div>
+        <div class="logo">
+            <h1>Tablero de Anuncios</h1>
+        </div>
 </header>
 
 <div class="menu__side" id="menu_side">

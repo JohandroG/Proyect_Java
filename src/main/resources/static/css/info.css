@@ -1,0 +1,289 @@
+@charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    color: black;
+}
+
+#body{
+    background-color: rgb(247,178,0);
+    height: auto;
+    width: 100%;
+}
+
+.info{
+    background-color: rgb(255, 255, 255);
+    width: 90%;
+    height: auto;
+    margin: 5%;
+    box-shadow: 2px 2px 12px 2px rgb(20, 20, 20);
+    margin-bottom: 30px;
+}
+
+.back{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    width: 70px;
+    text-align: center;
+    margin: 15px;
+}
+
+.back a{
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.title{
+    font-size: 12px;
+    padding: 10px;
+}
+
+.descr{
+    padding: 10px;
+    width: 80%;
+}
+
+
+
+.space{
+    height: 20px;
+}
+
+.space2{
+	height: 5px;
+}
+
+.options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 13px;
+    margin-bottom: 30px;
+}
+
+.link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    padding: 2px 25px;
+    border-radius: 10px;
+    background-color: rgb(23, 52, 170);
+    
+}
+
+.link h4{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin-left: 7px;
+}
+
+.link i{
+    color: rgb(255, 255, 255);
+}
+
+.edit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    padding: 2px 25px;
+    padding-bottom: 3px;
+    border-radius: 10px;
+    background-color: rgb(199, 57, 5);
+
+}
+
+.edit h4{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin-left: 7px;
+}
+
+.edit i{
+    color: rgb(255, 255, 255);
+}
+
+
+/* =========================================================================================== */
+
+.carrusel {
+    display: flex;
+    width: 90%;
+    gap: 10px;
+    margin-left: 5%;
+    justify-content: center;
+    z-index: 10;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    
+}
+
+.carrusel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* max-width: 1030px; */
+    max-width: 510px;
+    scroll-behavior: smooth;
+}
+
+.carrusel-fotos {
+    display: flex;
+    gap: 10px;
+    overflow: auto;
+}
+
+.carrusel-fotos img {
+    border-radius: 20px;
+    /* border: 4px solid rgb(255, 255, 255); */
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+
+.carrusel-menu {
+    display: none;
+}
+#num{
+    padding: 10px;
+    background-color: rgb(247, 124, 0);
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+
+#fotos{
+    display: none;
+}
+
+#fotos h4:hover{
+    color: rgb(0, 0, 0);
+}
+
+@media screen and (min-width: 500px) {
+    .carrusel-fotos {
+    overflow: hidden;
+    }
+
+
+    .carrusel ul {
+        width: 100%;
+    }
+
+
+
+    .carrusel-fotos img {
+    width: 500px;
+    height: 400px;
+    }
+
+    .carrusel-fotos li {
+        border-radius: 20px;
+    }
+
+    .carrusel-menu {
+    display: block;
+    }
+    .carrusel-menu img {
+    box-sizing: border-box;
+    width: 50px;
+    height: 40px;
+    border: 10px solid rgb(255, 255, 255);
+    }
+    .carrusel-menu img:hover {
+    border: none;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1023px){ 
+
+.carrusel{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center;
+    height: auto;
+    background-color: rgb(247,178,0);
+    margin: 0;
+}
+
+.carrusel-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.carrusel-menu li{
+    width: 20%;
+    margin: 10px;
+}
+
+.title{
+    font-size: 25px;
+    padding: 10px 30px;
+}
+
+.descr{
+    padding: 10px 30px;
+    font-size: 20px;
+}
+
+
+}
+
+
+@media only screen and (min-width: 1024px) {
+
+    .carrusel{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        align-items: center;
+        height: auto;
+        background-color: rgb(247,178,0);
+        margin: 0;
+        border-radius: 0px 0px 20px 0px;
+    }
+
+    .carrusel-menu{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .carrusel-menu li{
+        width: 20%;
+        margin: 10px;
+    }
+
+.info{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.space{
+    display: none;
+}
+
+.title{
+    font-size: 25px;
+    padding: 10px 30px;
+}
+
+.descr{
+    padding: 10px 30px;
+    font-size: 20px;
+}
+
+
+
+}

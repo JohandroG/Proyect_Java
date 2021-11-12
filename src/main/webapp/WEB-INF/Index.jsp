@@ -194,11 +194,13 @@
                         </div>
 
                         <div class="noticeinfo">
-                            
+
+                            <c:if test="${info.getImg() != null }"  >
                             <div id="imgcontainer">
                                 <img alt="Cargando Imagen" id="img" src="<c:url value="${info.getImg()}"></c:url>" />
                             </div>
-                            
+                            </c:if>
+
                             <div class="generalinfo">
                                 <div class="tianddesc">
                                     <div class="title">

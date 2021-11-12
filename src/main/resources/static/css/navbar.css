@@ -133,6 +133,16 @@ header{
 a.selected{
     color: white;
 }
+.logo{
+    margin-left: 22%;
+    font-size: 11px ;
+    color: white;
+}   
+
+.icon__menu i{
+    color: white;
+    font-size: 30px;
+}
 
 .selected::before{
     content: '';
@@ -164,4 +174,25 @@ a.selected{
         width: 80px;
         left: -80px;
     }
+}
+
+
+@media only screen and (min-width: 481px) and (max-width: 1023px){ 
+
+.logo{
+    margin-left: 50%;
+    font-size: 11px ;
+    color: white;
+}   
+}
+
+@media only screen and (min-width: 1024px) {
+
+
+    .logo{
+          margin-left: 67%;
+          font-size: 11px ;
+          color: white;
+    } 
+
 }
