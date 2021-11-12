@@ -13,7 +13,7 @@
 <title>Publicar </title>
 <link rel="stylesheet" href="/css/normalize.css"/>
 <link rel="stylesheet" href="/css/navbar.css"/>
-
+<link rel="stylesheet" href="/css/publish.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 </head>
