@@ -30,17 +30,17 @@
         <c:if test="${noticesInfo.getImg() != null }"  >
             <div class="carrusel">
                 <ul class="carrusel-fotos">
-                <li id="foto1"><img id="foto" src="<c:url value="${info.getImg()}"></c:url>" alt=""></li> 
+                <li id="foto1"><img id="foto" src="<c:url value="${noticesInfo.getImg()}"></c:url>" alt=""></li> 
                 <c:if test="${noticesInfo.getImg2() != null }"  >
-                <li id="foto2"><img id="foto" src="<c:url value="${info.getImg2()}"></c:url>" alt=""></li>
+                <li id="foto2"><img id="foto" src="<c:url value="${noticesInfo.getImg2()}"></c:url>" alt=""></li>
                 <!-- <li id="foto1"><img id="foto" src="https://i.ibb.co/JR95j0T/yoimiya.png" alt=""></li> -->
                 <!-- <li id="foto2"><img id="foto" src="https://i.ibb.co/hXyJXqG/PRACTICA-LABORATORIO-MANTENIMIENTO-Johandro-Gonzalez-Arrieta.jpg" alt=""></li> -->
                 </c:if>
                 </ul>
                 <ul class="carrusel-menu">
                     <c:if test="${noticesInfo.getImg2() != null }"  >
-                <li><a id="fotos2" href="#foto1"><h4 id="num">1</h4></a></li>
-                <li><a id="fotos2" href="#foto2"><h4 id="num">2</h4></a></li>
+                <li><a style="text-decoration: none;" id="fotos2" href="#foto1"><h4 id="num">1</h4></a></li>
+                <li><a style="text-decoration: none;" id="fotos2" href="#foto2"><h4 id="num">2</h4></a></li>
                     </c:if>
                 </ul>
             </div>
