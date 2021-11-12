@@ -100,51 +100,68 @@
     </div>
 </div>
 
-    
+
     <main>
+
+        <div id="headert">
+            <h1>Publicar un Anuncio</h1>
+        </div>
         <form action="/publish" method="POST" enctype="multipart/form-data"> 
             <p class="flashmjs">
                 <c:out value="${errorMessage2}"></c:out>
             </p>
 
-            <div class="left">
-
-            <label for="topic">Tema:</label>
-            <input type="text" name="topic"/>
-            <p class="flashmjs">
-                <c:out value="${errorMessage3}"></c:out>
-            </p>
-
-            <label for="desc">Descripción:</label>
-            <textarea type="text" name="desc"></textarea>
-            <p class="flashmjs">
-                <c:out value="${errorMessage4}"></c:out>
-            </p>
-
-            </div>
-            
-            <div class="right">
-                <div class="images">
-                <label>Incluye Imagen</label>
-                <input type="file" id="newImage1" name="newImage1" accept="image/png, image/jpeg"/>
-                <p class="flashmjs">
-                    <c:out value="${errorMessage1}"></c:out>
-                </p>
-
-                <label>Imagen Extra</label>
-                <input type="file" id="newImage2" name="newImage2" accept="image/png, image/jpeg"/>
+            <div class="sides">
+                <div class="left">
+                
+                <div class="textinput">
+                    <label for="topic">Tema:</label>
+                    <input placeholder="Sobre..." type="text" name="topic"/>
+                    <p class="flashmjs">
+                        <c:out value="${errorMessage3}"></c:out>
+                    </p>
                 </div>
-
-                <div class="link">
+                
+                <div class="textare">
+                    <label for="desc">Descripción:</label>
+                    <textarea placeholder="Quiero informar que..." type="text" name="desc"></textarea>
+                    <p class="flashmjs">
+                        <c:out value="${errorMessage4}"></c:out>
+                    </p>
+                </div>
+                
+                <div class="textinput">
                     <label for="link">Enlace:</label>
-                    <input type="text" name="link"/>
+                    <input type="text" placeholder="www.ejemplo.com" name="link"/>
                 </div>
+                
+                </div>
+                
+                <div class="right">
+                    <div class="imgsside">
+                        <label>Imagen (Principal)</label>
+                        <input type="file" id="newImage1" name="newImage1" accept="image/png, image/jpeg"/>
+                        <p class="flashmjs">
+                            <c:out value="${errorMessage1}"></c:out>
+                        </p>
+                    </div>
+                
+                    <div class="imgsside">
+                        <label>Imagen (Extra)</label>
+                        <input  type="file" id="newImage2" name="newImage2" accept="image/png, image/jpeg"/>
+                        </div>
+                    </div>
             </div>
-            <div class="botton">
-                <input type="checkbox" name="important">
+
+            </div>
+            <div class="impor">
+                <input id="check" type="checkbox" name="important">
                 <label for="important">Importante</label>
             </div>
-            <button type="submit">Publicar</button>
+
+            
+
+            <button id="publish" type="submit">Publicar</button>
         </form>
     </main>
 

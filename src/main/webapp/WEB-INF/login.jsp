@@ -121,7 +121,7 @@
                     </p>
     
                     <label for="password">Contraseña:</label>
-                    <input type="text" name="password" placeholder="Contraseña"/>
+                    <input type="password" name="password" placeholder="Contraseña"/>
                     <p class="flashmjs">
                         <c:out value="${lerrorMessage3}"></c:out>
                     </p>

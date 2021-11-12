@@ -13,6 +13,7 @@
 <title>Actualizar</title>
 <link rel="stylesheet" href="/css/normalize.css"/>
 <link rel="stylesheet" href="/css/navbar.css"/>
+<link rel="stylesheet" href="/css/update.css"/>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
@@ -101,61 +102,77 @@
 </div>
     
     <main>
+
+        <form method="POST" action="/delete">
+            <input type="hidden" value="${noticeInfo.getNotice_id()}" name="notice_id"/>
+            <input type="hidden" value="${noticeInfo.getImg2()}" name="img2"/>
+            <input type="hidden" value="${noticeInfo.getImg()}" name="img1"/>
+            <button id="delete" type="submit">Eliminar</button>
+        </form>
+
+        <div id="headert">
+            <h1>Actualizar un Anuncio</h1>
+        </div>
+
         <form action="/update" method="POST" enctype="multipart/form-data"> 
             <p class="flashmjs">
                 <c:out value="${errorMessage2}"></c:out>
             </p>
 
-            <div class="left">
-
-            <label for="topic">Tema:</label>
-            <input type="text" value="${noticeInfo.getTitle()}" name="topic"/>
-            <p class="flashmjs">
-                <c:out value="${errorMessage3}"></c:out>
-            </p>
-            
-
-            <label for="desc">Descripción:</label>
-            <textarea type="text" name="desc">${noticeInfo.getDescription()}</textarea>
-            <p class="flashmjs">
-                <c:out value="${errorMessage4}"></c:out>
-            </p>
-
-            </div>
-            
-            <div class="right">
-                <div class="images">
-                <label>Incluye Imagen</label>
-                <input type="file" value="${noticeInfo.getImg()}"  id="newImage1" name="newImage1" accept="image/png, image/jpeg"/>
-                <p class="flashmjs">
-                    <c:out value="${errorMessage1}"></c:out>
-                </p>
-
-                <label>Imagen Extra</label>
-                <input type="file" id="newImage2" name="newImage2" accept="image/png, image/jpeg"/>
+            <div class="sides">
+                <div class="left">
+                
+                <div class="textinput">
+                    <label for="topic">Tema:</label>
+                    <input type="text" value="${noticeInfo.getTitle()}" name="topic"/>
+                    <p class="flashmjs">
+                        <c:out value="${errorMessage3}"></c:out>
+                    </p>
                 </div>
-
-                <div class="link">
+                
+                
+                <div class="textare">
+                    <label for="desc">Descripción:</label>
+                    <textarea type="text" name="desc">${noticeInfo.getDescription()}</textarea>
+                    <p class="flashmjs">
+                        <c:out value="${errorMessage4}"></c:out>
+                    </p>
+                </div>
+                
+                <div class="textinput">
                     <label for="link">Enlace:</label>
                     <input type="text" value="${noticeInfo.getLink()}" name="link"/>
                 </div>
+
+                </div>
+                
+                <div class="right">
+                    
+                    <div class="imgsside">
+                        <label>Incluye Imagen</label>
+                        <input type="file" value="${noticeInfo.getImg()}"  id="newImage1" name="newImage1" accept="image/png, image/jpeg"/>
+                        <p class="flashmjs">
+                            <c:out value="${errorMessage1}"></c:out>
+                        </p>
+                    </div>
+                
+                    <div class="imgsside">
+                        <label>Imagen Extra</label>
+                        <input type="file" id="newImage2" name="newImage2" accept="image/png, image/jpeg"/>
+                    </div>
+                
+                </div>
+                
             </div>
-            <div class="button">
-                <input type="checkbox" name="important">
+            <div class="impor">
+                <input id="check" type="checkbox" name="important">
                 <label for="important">Importante</label>
             </div>
 
             <input type="hidden" value="${noticeInfo.getImg2()}" name="img2"/>
             <input type="hidden" value="${noticeInfo.getImg()}" name="img1"/>
             <input type="hidden" value="${noticeInfo.getNotice_id()}" name="notice_id"/>
-            <button type="submit">Publicar</button>
-        </form>
-
-        <form method="POST" action="/delete">
-            <input type="hidden" value="${noticeInfo.getNotice_id()}" name="notice_id"/>
-            <input type="hidden" value="${noticeInfo.getImg2()}" name="img2"/>
-            <input type="hidden" value="${noticeInfo.getImg()}" name="img1"/>
-            <button type="submit">Eliminar</button>
+            <button id="publish" type="submit">Actualizar</button>
         </form>
         
     </main>

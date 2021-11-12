@@ -132,19 +132,19 @@
                 </p>
 
                 <label for="password">Contraseña:</label>
-                <input type="text" name="password" placeholder="Contraseña"/>
+                <input type="password" name="password" placeholder="Contraseña"/>
                 <p class="flashmjs">
                     <c:out value="${rerrorMessage5}"></c:out>
                 </p>
 
                 <label for="confpassword">Confirmar Contraseña:</label>
-                <input type="text" name="confpassword" placeholder="Confirma Contraseña"/>
+                <input type="password" name="confpassword" placeholder="Confirma Contraseña"/>
                 <p class="flashmjs">
                     <c:out value="${rerrorMessage6}"></c:out>
                 </p>
 
                 <label for="code">Codigo de Administrador:</label>
-                <input type="text" name="code" placeholder="Codigo"/>
+                <input type="password" name="code" placeholder="Codigo"/>
                 <p class="flashmjs">
                     <c:out value="${rerrorMessage7}"></c:out>
                 </p>
