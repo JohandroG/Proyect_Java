@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="/css/navbar.css"/>
 <link rel="stylesheet" href="/css/updateadmin.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
 </head>
 <body id="body">
 
@@ -177,9 +176,11 @@
     
                 <div class="buttons">
                     <button id="reg" type="submit">Actualizar</button>
+                    
                     <div class="delete">
-                        <a id="deletea" href="/delete/myuser">Eliminar</a>
+                        <a id="deletea" href="/delete/page">Eliminar</a>
                     </div>
+
                 </div>
             </form>
 

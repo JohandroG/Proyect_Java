@@ -33,8 +33,6 @@
                 <li id="foto1"><img id="foto" src="<c:url value="${noticesInfo.getImg()}"></c:url>" alt=""></li> 
                 <c:if test="${noticesInfo.getImg2() != null }"  >
                 <li id="foto2"><img id="foto" src="<c:url value="${noticesInfo.getImg2()}"></c:url>" alt=""></li>
-                <!-- <li id="foto1"><img id="foto" src="https://i.ibb.co/JR95j0T/yoimiya.png" alt=""></li> -->
-                <!-- <li id="foto2"><img id="foto" src="https://i.ibb.co/hXyJXqG/PRACTICA-LABORATORIO-MANTENIMIENTO-Johandro-Gonzalez-Arrieta.jpg" alt=""></li> -->
                 </c:if>
                 </ul>
                 <ul class="carrusel-menu">

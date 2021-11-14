@@ -81,6 +81,19 @@ public UsersController(AppService as) {
 	    return "updateadmin.jsp";
 	}
 
+	//========================================Load delete
+		@RequestMapping(value="/delete/page", method=RequestMethod.GET)
+	    public String delete(HttpSession session, Model model) {
+	    	
+	    	Long user_id =  (Long) session.getAttribute("user_id");
+	    	User current = as.findUsingID(user_id);
+
+	    		if(current == null) {
+	    			return "redirect:/";
+	    		}
+	    			
+	        return "delete.jsp";
+	    }
 	
 //-------------------------------------POST AND FORMS-----------------------------------------------
 	
@@ -266,10 +279,19 @@ public UsersController(AppService as) {
     
     
     
-    @RequestMapping( value = "/delete/myuser", method = RequestMethod.GET )
-	public String delete(RedirectAttributes redirectAttributes,HttpSession session){
+    @RequestMapping( value = "/delete/myuser", method = RequestMethod.POST )
+	public String delete(@RequestParam (value = "code") String code,
+			RedirectAttributes redirectAttributes,HttpSession session){
 		
-		
+    	boolean isValid = true;
+    	List<Code> matchCode = as.seeMatch(code);
+    	
+    	if( matchCode.size() == 0 ) {
+    		redirectAttributes.addFlashAttribute("deleteMessage", "🔎 El codigo no coincide con nuestros registros");
+    		isValid = false;
+    	}
+    	
+    	if(isValid) {
     	Long user_id =  (Long) session.getAttribute("user_id");
     	User current = as.findUsingID(user_id);
 
@@ -277,12 +299,13 @@ public UsersController(AppService as) {
     			as.deleteuser(current);
     			
     			redirectAttributes.addFlashAttribute("indexmessage9", "👔❌ Tu Usuario ha sido eliminado!");
+    			session.removeAttribute("user_id");
     			return "redirect:/";
     		}
-		
-		
+    	}
+    	
 		//--------------
-		return "redirect:/";
+		return "redirect:/delete/page";
 	}
 	
 	
