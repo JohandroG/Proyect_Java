@@ -27,16 +27,9 @@
       background-color: rgb(249,179,1);
 }
 
-.logo{
-      margin-left: 22%;
-      font-size: 11px ;
-      color: white;
-}   
+ 
 
-.icon__menu i{
-      color: white;
-      font-size: 30px;
-}
+
 
 .searchdiv{
       display: flex;
@@ -372,11 +365,6 @@ font-size: 15px;
       align-items: center;
 }
 
-.logo{
-      margin-left: 50%;
-      font-size: 11px ;
-      color: white;
-}   
 
 
 }
@@ -384,11 +372,6 @@ font-size: 15px;
 @media only screen and (min-width: 1024px) {
 
 
-      .logo{
-            margin-left: 67%;
-            font-size: 11px ;
-            color: white;
-      } 
 
       .searchf{
             flex-direction: row;

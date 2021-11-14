@@ -111,10 +111,10 @@
             <h1>Cambiar codigo de administrador</h1>
             <form method="POST" action="/new/code">
                 <label for="last">Codigo Anterior:</label>
-                <input type="text" name="last"/>
+                <input type="password" name="last"/>
 
                 <label for="new">Nuevo Codigo:</label>
-                <input type="text" name="new"/>
+                <input type="password" name="new"/>
 
                 <input type="hidden" value="1" name="code_id"/>
                 <button type="submit">Cambiar</button>

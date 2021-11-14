@@ -35,7 +35,7 @@ public class Notice {
 	private String title;
 	
 	@NotNull
-	@Size( min = 5, max = 5000)
+	@Column(columnDefinition="TEXT")
 	private String description;
 	
 	

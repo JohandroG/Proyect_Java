@@ -29,7 +29,7 @@ header{
     position: fixed;
     top: 0;
     z-index: 200;
-    /* background: #217FA8; */
+    justify-content: space-between;
 }
 
 .icon__menu{
@@ -134,7 +134,7 @@ a.selected{
     color: white;
 }
 .logo{
-    margin-left: 22%;
+    margin-right: 5%;
     font-size: 11px ;
     color: white;
 }   
@@ -180,7 +180,7 @@ a.selected{
 @media only screen and (min-width: 481px) and (max-width: 1023px){ 
 
 .logo{
-    margin-left: 50%;
+    margin-right: 13%;
     font-size: 11px ;
     color: white;
 }   
@@ -190,9 +190,9 @@ a.selected{
 
 
     .logo{
-          margin-left: 67%;
-          font-size: 11px ;
-          color: white;
+        margin-right: 12%;
+        font-size: 11px ;
+        color: white;
     } 
 
 }

@@ -13,7 +13,7 @@
 <title>Registrate</title>
 <link rel="stylesheet" href="/css/normalize.css"/>
 <link rel="stylesheet" href="/css/navbar.css"/>
-
+<link rel="stylesheet" href="/css/register.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 
@@ -105,7 +105,7 @@
 
 
 <main>
-    <h1>Registrarse</h1>
+    <h1 id="theme">Registrarse</h1>
     
     <div class="regform">
         <form method="POST" action="/register">
@@ -114,48 +114,64 @@
                 <c:out value="${rerrorMessage2}"></c:out>
             </p>
 
-            <div class="left">
+            <div class="spaces">
+                <div class="left">
+                    
+                    <div class="twofi">
+                        <div class="field">
+                            <label for="name">Nombre:</label>
+                            <input class="inputext" type="text" name="name" placeholder="Nombre"/>
+                            <p class="flashmjs">
+                                <c:out value="${rerrorMessage3}"></c:out>
+                            </p>
+                        </div>
+                        
+                        <div class="field">
+                            <label for="username">Usuario:</label>
+                            <input class="inputext" type="text" name="username" placeholder="Usuario"/>
+                            <p class="flashmjs">
+                                <c:out value="${rerrorMessage1}"></c:out>
+                            </p>
+                            <p class="flashmjs">
+                                <c:out value="${rerrorMessage4}"></c:out>
+                            </p>
+                        </div>
+                    </div>
                 
-                <label for="name">Nombre Completo:</label>
-                <input type="text" name="name" placeholder="Nombre"/>
-                <p class="flashmjs">
-                    <c:out value="${rerrorMessage3}"></c:out>
-                </p>
+                    <div class="twofi">
+                        <div class="field">
+                            <label for="password">Contraseña:</label>
+                            <input class="inputext" type="password" name="password" placeholder="Contraseña"/>
+                            <p class="flashmjs">
+                                <c:out value="${rerrorMessage5}"></c:out>
+                            </p>
+                        </div>
+                        
+                        <div class="field">
+                            <label for="confpassword">Confirmación:</label>
+                            <input class="inputext" type="password" name="confpassword" placeholder="Confirma Contraseña"/>
+                            <p class="flashmjs">
+                                <c:out value="${rerrorMessage6}"></c:out>
+                            </p>
+                        </div>
+                    </div>
 
-                <label for="username">Usuario:</label>
-                <input type="text" name="username" placeholder="Usuario"/>
-                <p class="flashmjs">
-                    <c:out value="${rerrorMessage1}"></c:out>
-                </p>
-                <p class="flashmjs">
-                    <c:out value="${rerrorMessage4}"></c:out>
-                </p>
+                    <div class="field code">
+                        <label for="code">Codigo de Administrador:</label>
+                        <input class="inputext inputcode" type="password" name="code" placeholder="Codigo"/>
+                        <p class="flashmjs">
+                            <c:out value="${rerrorMessage7}"></c:out>
+                        </p>
+                    </div>
 
-                <label for="password">Contraseña:</label>
-                <input type="password" name="password" placeholder="Contraseña"/>
-                <p class="flashmjs">
-                    <c:out value="${rerrorMessage5}"></c:out>
-                </p>
-
-                <label for="confpassword">Confirmar Contraseña:</label>
-                <input type="password" name="confpassword" placeholder="Confirma Contraseña"/>
-                <p class="flashmjs">
-                    <c:out value="${rerrorMessage6}"></c:out>
-                </p>
-
-                <label for="code">Codigo de Administrador:</label>
-                <input type="password" name="code" placeholder="Codigo"/>
-                <p class="flashmjs">
-                    <c:out value="${rerrorMessage7}"></c:out>
-                </p>
-
+                </div>
+                
+                <div class="right">
+                    <p>Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable.</p>
+                </div>
             </div>
 
-            <div class="right">
-                <p>Description</p>
-            </div>
-
-            <button type="submit">Registrarse</button>
+            <button id="reg" type="submit">Registrarse</button>
         </form>
     </div>
 </main>

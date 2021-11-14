@@ -13,7 +13,7 @@
 <title>Actualizar Datos</title>
 <link rel="stylesheet" href="/css/normalize.css"/>
 <link rel="stylesheet" href="/css/navbar.css"/>
-
+<link rel="stylesheet" href="/css/updateadmin.css"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
 </head>
@@ -101,7 +101,7 @@
 </div>
     
     <main>
-        <h1>Actualizar mis datos</h1>
+        <h1 id="theme">Actualizar mis datos</h1>
         
         <div class="regform">
             <form method="POST" action="/update/admin">
@@ -113,50 +113,76 @@
                     <c:out value="${rerrorMessage8}"></c:out>
                 </p>
     
-                <div class="left">
+                <div class="spaces">
+
+                    <div class="left">
+
+                            <div class="twofi">
+                                <div class="field">
+                                    <label for="name">Nombre:</label>
+                                    <input class="inputext" type="text" name="name" value="${adminInfo.getFullname()}" placeholder="${adminInfo.getFullname()}"/>
+                                    <p class="flashmjs">
+                                        <c:out value="${rerrorMessage3}"></c:out>
+                                    </p>
+                                </div>
+                                
+                                <div class="field">
+                                    <label for="username">Usuario:</label>
+                                    <input class="inputext" type="text" name="username" value="${adminInfo.getUsername()}" placeholder="Diferente de: ${adminInfo.getUsername()}"/>
+                                    <p class="flashmjs">
+                                        <c:out value="${rerrorMessage1}"></c:out>
+                                    </p>
+                                    <p class="flashmjs">
+                                        <c:out value="${rerrorMessage4}"></c:out>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="twofi">
+                                <div class="field">
+                                    <label for="password">Contraseña:</label>
+                                    <input class="inputext" type="text" name="password" placeholder="Contraseña"/>
+                                    <p class="flashmjs">
+                                        <c:out value="${rerrorMessage5}"></c:out>
+                                    </p>
+                                </div>
+                                
+                                <div class="field">
+                                    <label for="confpassword">Confirmar:</label>
+                                    <input class="inputext" type="text" name="confpassword" placeholder="Confirma Contraseña"/>
+                                    <p class="flashmjs">
+                                        <c:out value="${rerrorMessage6}"></c:out>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="field code">
+                                <label for="code">Codigo de Administrador:</label>
+                                <input class="inputext inputcode" type="text" name="code" placeholder="Codigo"/>
+                                <p class="flashmjs">
+                                    <c:out value="${rerrorMessage7}"></c:out>
+                                </p>
+                                <input type="hidden" value="${adminInfo.getUser_id()}" name="user_id">
+                            </div>
+
+                        </div>
+
                     
-                    <label for="name">Nombre Completo:</label>
-                    <input type="text" name="name" value="${adminInfo.getFullname()}" placeholder="${adminInfo.getFullname()}"/>
-                    <p class="flashmjs">
-                        <c:out value="${rerrorMessage3}"></c:out>
-                    </p>
-    
-                    <label for="username">Usuario:</label>
-                    <input type="text" name="username" value="${adminInfo.getUsername()}" placeholder="Diferente de: ${adminInfo.getUsername()}"/>
-                    <p class="flashmjs">
-                        <c:out value="${rerrorMessage1}"></c:out>
-                    </p>
-                    <p class="flashmjs">
-                        <c:out value="${rerrorMessage4}"></c:out>
-                    </p>
-    
-                    <label for="password">Contraseña:</label>
-                    <input type="text" name="password" placeholder="Contraseña"/>
-                    <p class="flashmjs">
-                        <c:out value="${rerrorMessage5}"></c:out>
-                    </p>
-    
-                    <label for="confpassword">Confirmar Contraseña:</label>
-                    <input type="text" name="confpassword" placeholder="Confirma Contraseña"/>
-                    <p class="flashmjs">
-                        <c:out value="${rerrorMessage6}"></c:out>
-                    </p>
-    
-                    <label for="code">Codigo de Administrador:</label>
-                    <input type="text" name="code" placeholder="Codigo"/>
-                    <p class="flashmjs">
-                        <c:out value="${rerrorMessage7}"></c:out>
-                    </p>
-                    <input type="hidden" value="${adminInfo.getUser_id()}" name="user_id">
+                    
+                    <div class="right">
+                            <p>Description</p>
+                    </div>
+
                 </div>
     
-                <div class="right">
-                    <p>Description</p>
+                <div class="buttons">
+                    <button id="reg" type="submit">Actualizar</button>
+                    <div class="delete">
+                        <a id="deletea" href="/delete/myuser">Eliminar</a>
+                    </div>
                 </div>
-    
-                <button type="submit">Actualizar</button>
             </form>
-            <a href="/delete/myuser">ELIMINAR MI CUENTA</a>
+
         </div>
     </main>
 
