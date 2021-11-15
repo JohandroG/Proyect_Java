@@ -1,6 +1,7 @@
 package com.board.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -83,7 +84,18 @@ public class CodeController {
 	
 	
 	
-	
+//-------------------------------Un solo uso	
+	@RequestMapping(value="/default/code", method=RequestMethod.GET)
+	public String createCode() {
+		
+		List<Code> match = as.exists();
+		
+		if (match.size() == 0 ) {
+			as.defultCode();
+		}
+		
+		return "redirect:/";
+	}
 	
 	
 	

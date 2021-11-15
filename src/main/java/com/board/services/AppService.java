@@ -1,6 +1,7 @@
 package com.board.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -110,6 +111,14 @@ public void deleteNotice(Long id) {
 }
 
 //-----------------------------------------------Code--------------------------------------
+
+public void defultCode() {
+	cr.defaultCode();
+}
+
+public List<Code> exists(){
+	return cr.exists();
+}
 
 public List<Code> seeMatch( String code ){
 	return cr.matchcode(code);
