@@ -1,8 +1,6 @@
 package com.board.controllers;
 
 import java.util.List;
-import java.util.Optional;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;

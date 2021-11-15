@@ -1,15 +1,12 @@
 package com.board.services;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.board.models.Code;
 import com.board.models.Notice;
 import com.board.models.User;
-import com.board.repositories.AssociationRepository;
 import com.board.repositories.CodeRepository;
 import com.board.repositories.NoticeRepository;
 import com.board.repositories.UsersRepository;
@@ -20,13 +17,12 @@ public class AppService {
 private final UsersRepository ur;
 private final CodeRepository cr;
 private final NoticeRepository nr;
-private final AssociationRepository ar;
 
-public AppService(UsersRepository ur, CodeRepository cr, NoticeRepository nr, AssociationRepository ar) {
+
+public AppService(UsersRepository ur, CodeRepository cr, NoticeRepository nr) {
 	this.ur = ur;
 	this.cr = cr;
 	this.nr = nr;
-	this.ar = ar;
 }
 	
 //=========================================================================================
